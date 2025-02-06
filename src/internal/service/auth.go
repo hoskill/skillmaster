@@ -31,9 +31,9 @@ func (s *authService) Register(ctx context.Context, username, email, password st
 
 	// Создаем пользователя
 	user := &entities.User{
-		Username: username,
-		Email:    email,
-		Password: string(hashedPassword),
+		Username:     username,
+		Email:        email,
+		PasswordHash: string(hashedPassword),
 	}
 
 	if err := s.repo.CreateUser(ctx, user); err != nil {
@@ -51,7 +51,7 @@ func (s *authService) Login(ctx context.Context, username, password string) (*en
 	}
 
 	// Проверяем пароль
-	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password)); err != nil {
+	if err := bcrypt.CompareHashAndPassword([]byte(user.PasswordHash), []byte(password)); err != nil {
 		return nil, errors.New("invalid credentials")
 	}
 

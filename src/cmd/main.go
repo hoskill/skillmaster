@@ -12,7 +12,7 @@ import (
 
 func main() {
 	//todo mv to env
-	dsn := "host=localhost user=database password=database dbname=your_db port=5432 sslmode=disable"
+	dsn := "host=localhost user=pguser password=pgpass dbname=skillmaster port=5432 sslmode=disable"
 	db, err := database.InitDB(dsn)
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)

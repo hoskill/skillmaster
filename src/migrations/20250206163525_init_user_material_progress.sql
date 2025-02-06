@@ -1,7 +1,8 @@
-DROP TABLE IF EXISTS public.user_material_progress;
+-- +goose Up
+-- +goose StatementBegin
 CREATE TABLE public.user_material_progress
 (
-    id         SERIAL PRIMARY KEY,
+    id                  SERIAL PRIMARY KEY,
     user_id             INT NOT NULL REFERENCES users (id) ON DELETE CASCADE,
     material_id         INT NOT NULL REFERENCES materials (id) ON DELETE CASCADE,
     is_completed        BOOLEAN   DEFAULT FALSE,
@@ -15,3 +16,9 @@ CREATE TABLE public.user_material_progress
 
 CREATE INDEX idx_user_progress ON user_material_progress (user_id);
 CREATE INDEX idx_material_progress ON user_material_progress (material_id);
+-- +goose StatementEnd
+
+-- +goose Down
+-- +goose StatementBegin
+DROP TABLE IF EXISTS public.user_material_progress;
+-- +goose StatementEnd

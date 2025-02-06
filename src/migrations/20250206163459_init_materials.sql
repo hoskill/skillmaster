@@ -1,4 +1,5 @@
-DROP TABLE IF EXISTS public.materials;
+-- +goose Up
+-- +goose StatementBegin
 CREATE TABLE public.materials
 (
     id               SERIAL PRIMARY KEY,
@@ -12,3 +13,9 @@ CREATE TABLE public.materials
 
 COMMENT
 ON COLUMN materials.content_url IS 'Ссылка на материал (видео, статья, тест и т.д.)';
+-- +goose StatementEnd
+
+-- +goose Down
+-- +goose StatementBegin
+DROP TABLE IF EXISTS public.materials;
+-- +goose StatementEnd
