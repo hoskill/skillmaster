@@ -10,11 +10,10 @@ type Service interface {
 }
 
 type service struct {
-	repo repository.Repository
-	MaterialService
 	AuthService
+	MaterialService
 }
 
 func NewService(repo repository.Repository) Service {
-	return &service{repo: repo}
+	return &service{NewAuthService(repo), NewMaterialService(repo)}
 }
